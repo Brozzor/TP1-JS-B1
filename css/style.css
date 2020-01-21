@@ -1,3 +1,9 @@
 .container {
   margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.btn-smm {
+  padding: .6rem 1.3rem;
+  font-size: .64rem;
 }

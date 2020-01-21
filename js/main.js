@@ -63,6 +63,9 @@ let quizz = {
                 i++;
             }
   
+        })
+        .catch(err => {
+            endGame();
         });
   }
   

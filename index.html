@@ -6,88 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="" />
     <title>Bienvenue sur BestQuizzFrance</title>
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
-    <!-- Bootstrap core CSS -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css">
-    <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet" />
     
   </head>
   <body style="background: #111;">
     <div class="container">
       <center>
-        <h1 id="" class="text-white">Bienvenue sur BestQuizzFrance</h1><br><br>
-        <h3 class="mb-4"><span id="" class="badge badge-light">Choisissez le quiz qui vous correspond</span></h3>
+        <h1 id="h1title" class="text-white">Bienvenue sur BestQuizzFrance</h1><br><br>
+        <h3 class="mb-4"><span id="h3title" class="badge badge-light">Choisissez le quiz qui vous correspond</span></h3>
       </center>
+      
       <div class="row">
         <div class="col-sm-12">
+          <div id="board">
+          </div>
 <!-- Card deck -->
-<div class="card-deck">
-  <div class="card mb-4">
-
-    <div class="view overlay">
-      <img class="card-img-top" src="http://127.0.0.1:8080/img/1.jpg" alt="Card image cap">
-      <a href="http://127.0.0.1:8080/pages.html?id=1&level=1">
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-
-    <div class="card-body">
-      <h4 class="card-title">Ça s'est passé en 2019</h4>
-      <p class="card-text">Faits historiques et événements culturels</p>
-      <a href="http://127.0.0.1:8080/pages.html?id=1&level=1"><button type="button" class="btn btn-light-blue btn-sm">Débutant</button></a>
-      <a href="http://127.0.0.1:8080/pages.html?id=1&level=2"><button type="button" class="btn btn-light-blue btn-sm">Confirmé</button></a>
-      <a href="http://127.0.0.1:8080/pages.html?id=1&level=3"><button type="button" class="btn btn-light-blue btn-sm">Expert</button></a>
-
-    </div>
-
-  </div>
-  <div class="card mb-4">
-
-    <div class="view overlay">
-      <img class="card-img-top" src="http://127.0.0.1:8080/img/2.jpg" alt="Card image cap">
-      <a href="http://127.0.0.1:8080/pages.html?id=2&level=1">
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-
-    <div class="card-body">
-      <h4 class="card-title">Cérémonie des César </h4>
-      <p class="card-text">Le cinéma construit notre mémoire</p>
-      <a href="http://127.0.0.1:8080/pages.html?id=2&level=1"><button type="button" class="btn btn-light-blue btn-sm">Débutant</button></a>
-      <a href="http://127.0.0.1:8080/pages.html?id=2&level=2"><button type="button" class="btn btn-light-blue btn-sm">Confirmé</button></a>
-      <a href="http://127.0.0.1:8080/pages.html?id=2&level=3"><button type="button" class="btn btn-light-blue btn-sm">Expert</button></a>
-
-    </div>
-
-  </div>
-  <div class="card mb-4">
-
-    <div class="view overlay">
-      <img class="card-img-top" src="http://127.0.0.1:8080/img/3.jpg" alt="Card image cap">
-      <a href="http://127.0.0.1:8080/pages.html?id=3&level=1">
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-
-    <div class="card-body">
-      <h4 class="card-title">Snapchat</h4>
-      <p class="card-text">L'application aux messages éphémères</p>
-      <a href="http://127.0.0.1:8080/pages.html?id=3&level=1"><button type="button" class="btn btn-light-blue btn-sm">Débutant</button></a>
-      <a href="http://127.0.0.1:8080/pages.html?id=3&level=2"><button type="button" class="btn btn-light-blue btn-sm">Confirmé</button></a>
-      <a href="http://127.0.0.1:8080/pages.html?id=3&level=3"><button type="button" class="btn btn-light-blue btn-sm">Expert</button></a>
-
-    </div>
-
-  </div>
- 
+<div id="mainQuiz" class="card-deck">
 </div>
-<div class="card mb-4">
+<!-- Card deck -->
+<div id="banniere" class="card mb-4">
 
   <div class="view overlay">
     <img class="card-img-top" src="http://127.0.0.1:8080/img/4.jpg" alt="Card image cap">
@@ -99,14 +42,18 @@
   <div class="card-body">
     <h4 class="card-title">Déjeuner du matin</h4>
     <p class="card-text">Pour bien démarrer la journée</p>
-    <a href="http://127.0.0.1:8080/pages.html?id=4&level=1"><button type="button" class="btn btn-light-blue btn-sm">Débutant</button></a>
-    <a href="http://127.0.0.1:8080/pages.html?id=4&level=2"><button type="button" class="btn btn-light-blue btn-sm">Confirmé</button></a>
-    <a href="http://127.0.0.1:8080/pages.html?id=4&level=3"><button type="button" class="btn btn-light-blue btn-sm">Expert</button></a>
+    <a href="http://127.0.0.1:8080/pages.html?id=4&level=1"><button type="button" class="btn btn-dark btn-sm" style="padding: .6rem 1.3rem;
+        font-size: .64rem;">Débutant</button></a>
+    <a href="http://127.0.0.1:8080/pages.html?id=4&level=2"><button type="button" class="btn btn-dark btn-sm" style="padding: .6rem 1.3rem;
+        font-size: .64rem;">Confirmé</button></a>
+    <a href="http://127.0.0.1:8080/pages.html?id=4&level=3"><button type="button" class="btn btn-dark btn-sm" style="padding: .6rem 1.3rem;
+        font-size: .64rem;">Expert</button></a>
 
   </div>
 
 </div>
-<!-- Card deck -->
+<button id="displayBestScore" onclick="displayScore()" class="btn btn-light btn-block">Afficher vos meilleures scores</button>
+
         </div>
       </div>
     </div>
