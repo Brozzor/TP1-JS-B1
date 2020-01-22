@@ -1,4 +1,4 @@
-{
+let allQuiz = {
     "highscore": [
         {
             "id": 1,
@@ -6,9 +6,9 @@
             "commentary": "Faits historiques et événements culturels",
             "level": [
                 {
-                    "débutant": 0,
-                    "confirmé": 0,
-                    "expert": 0
+                    "débutant": 10,
+                    "confirmé": 9,
+                    "expert": 2
                 }
             ]
         },
@@ -18,9 +18,9 @@
             "commentary": "Le cinéma construit notre mémoire",
             "level": [
                 {
-                    "débutant": 0,
-                    "confirmé": 0,
-                    "expert": 0
+                    "débutant": 8,
+                    "confirmé": 4,
+                    "expert": 3
                 }
             ]
         },
@@ -30,9 +30,9 @@
             "commentary": "L'application aux messages éphémères",
             "level": [
                 {
-                    "débutant": 0,
-                    "confirmé": 0,
-                    "expert": 0
+                    "débutant": 5,
+                    "confirmé": 6,
+                    "expert": 3
                 }
             ]
         },
@@ -42,9 +42,9 @@
             "commentary": "Pour bien démarrer la journée",
             "level": [
                 {
-                    "débutant": 0,
-                    "confirmé": 0,
-                    "expert": 0
+                    "débutant": 5,
+                    "confirmé": 8,
+                    "expert": 2
                 }
             ]
         }

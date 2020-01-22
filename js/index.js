@@ -1,10 +1,8 @@
 initIndex();
 function initIndex(){
 // cette fonction permet l'affichage des 3 card situer dans le card-deck
-      fetch(`http://127.0.0.1:8080/high_score.json`)
-      .then(result => result.json())
-      .then(data => {
-      for (property of data.highscore){
+
+      for (property of allQuiz.highscore){
         if (property.id > 3){return;} // permet d'afficher que les 3 premiers
             document.getElementById('mainQuiz').innerHTML += `
             <div class="card mb-4">
@@ -30,7 +28,7 @@ function initIndex(){
         
           </div>`;
         }
-        });
+        
      
 }
 
@@ -41,11 +39,18 @@ function hideHomeInterface(){
 }
 
 function insertScoreInBoard(){
-  fetch(`http://127.0.0.1:8080/high_score.json`)
-      .then(result => result.json())
-      .then(data => {
-      for (property of data.highscore){
-        console.log(property.level[0].débutant)
+  let moyenne = 0;
+  let nbNote = 0;
+      for (property of allQuiz.highscore){
+        moyenne += parseInt(property.level[0].débutant); //-------------------------------------
+        moyenne += parseInt(property.level[0].confirmé);
+        moyenne += parseInt(property.level[0].expert);
+        nbNote += 3;// ----------------------------------Calcul de la moyenne général ----------
+        if (property.id == allQuiz.highscore.length){
+          moyenne = moyenne / nbNote; 
+          document.getElementById('h3title').innerHTML = `Moyenne : ${moyenne.toFixed(2)}/10`;
+        }//--------------------------------------------------------------------------------------
+     // remplissage du tableau des scores   
   document.getElementById('boardInput').innerHTML += `
   <tr>
       <th scope="row">${property.id}</th>
@@ -57,13 +62,13 @@ function insertScoreInBoard(){
   `;
       
     }
-});
+
 }
 
 function displayScore(){
   hideHomeInterface();
   document.getElementById('h1title').innerHTML = "Vos meilleurs scores";
-  document.getElementById('h3title').innerHTML = "Moyenne : 4/10";
+  document.getElementById('h3title').innerHTML = "Moyenne : 5/10";
   document.getElementById('board').innerHTML = `
   <div class="card mb-4">
   <table class="table table-striped">
@@ -83,4 +88,15 @@ function displayScore(){
   `;
   insertScoreInBoard();
   
+}
+
+function resetScore(){
+
+for (property of allQuiz.highscore){
+     // vidage du tableau des scores   
+        property.level[0].débutant = 0;
+        property.level[0].confirmé = 0;
+        property.level[0].expert = 0;
+    }
+insertScoreInBoard();
 }
