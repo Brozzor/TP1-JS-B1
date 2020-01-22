@@ -1,10 +1,15 @@
 initIndex();
-function initIndex(){
-// cette fonction permet l'affichage des 3 card situer dans le card-deck
+let allQuiz_json3 = sessionStorage.getItem("scoreAll");
+let storageScore1 = JSON.parse(allQuiz_json3);
 
-      for (property of allQuiz.highscore){
-        if (property.id > 3){return;} // permet d'afficher que les 3 premiers
-            document.getElementById('mainQuiz').innerHTML += `
+function initIndex() {
+    // cette fonction permet l'affichage des 3 card situer dans le card-deck
+
+    for (property of allQuiz.highscore) {
+        if (property.id > 3) {
+            return;
+        } // permet d'afficher que les 3 premiers
+        document.getElementById('mainQuiz').innerHTML += `
             <div class="card mb-4">
 
             <div class="view overlay">
@@ -27,31 +32,31 @@ function initIndex(){
             </div>
         
           </div>`;
-        }
-        
-     
+    }
+
+
 }
 
-function hideHomeInterface(){
-  document.getElementById('mainQuiz').innerHTML = null;
-  document.getElementById('banniere').innerHTML = null;
-  document.getElementById('displayBestScore').hidden = true;
+function hideHomeInterface() { // permet de cacher la page principal
+    document.getElementById('mainQuiz').innerHTML = null;
+    document.getElementById('banniere').innerHTML = null;
+    document.getElementById('displayBestScore').hidden = true;
 }
 
-function insertScoreInBoard(){
-  let moyenne = 0;
-  let nbNote = 0;
-      for (property of allQuiz.highscore){
+function insertScoreInBoard() {
+    let moyenne = 0;
+    let nbNote = 0;
+    for (property of storageScore1.highscore) {
         moyenne += parseInt(property.level[0].débutant); //-------------------------------------
         moyenne += parseInt(property.level[0].confirmé);
         moyenne += parseInt(property.level[0].expert);
-        nbNote += 3;// ----------------------------------Calcul de la moyenne général ----------
-        if (property.id == allQuiz.highscore.length){
-          moyenne = moyenne / nbNote; 
-          document.getElementById('h3title').innerHTML = `Moyenne : ${moyenne.toFixed(2)}/10`;
-        }//--------------------------------------------------------------------------------------
-     // remplissage du tableau des scores   
-  document.getElementById('boardInput').innerHTML += `
+        nbNote += 3; // ----------------------------------Calcul de la moyenne général ----------
+        if (property.id == allQuiz.highscore.length) {
+            moyenne = moyenne / nbNote;
+            document.getElementById('h3title').innerHTML = `Moyenne : ${moyenne.toFixed(2)}/10`;
+        } //--------------------------------------------------------------------------------------
+        // remplissage du tableau des scores   
+        document.getElementById('boardInput').innerHTML += `
   <tr>
       <th scope="row">${property.id}</th>
       <td>${property.name}</td>
@@ -60,16 +65,16 @@ function insertScoreInBoard(){
       <td>${property.level[0].expert}/10</td>
     </tr>
   `;
-      
+
     }
 
 }
 
-function displayScore(){
-  hideHomeInterface();
-  document.getElementById('h1title').innerHTML = "Vos meilleurs scores";
-  document.getElementById('h3title').innerHTML = "Moyenne : 5/10";
-  document.getElementById('board').innerHTML = `
+function displayScore() { // permet d'afficher le score
+    hideHomeInterface();
+    document.getElementById('h1title').innerHTML = "Vos meilleurs scores";
+    document.getElementById('h3title').innerHTML = "Moyenne : 5/10";
+    document.getElementById('board').innerHTML = `
   <div class="card mb-4">
   <table class="table table-striped">
   <thead>
@@ -85,18 +90,21 @@ function displayScore(){
   </tbody>
 </table>
 </div>
+<a href="http://127.0.0.1:8080/index.html" class="btn btn-light">Revenir à l'acceuil</a>
+<button id="resetAllScore" onclick="resetScore()" class="btn btn-danger">Remettre vos scores à zero</button>
   `;
-  insertScoreInBoard();
-  
+    insertScoreInBoard();
+
 }
 
-function resetScore(){
+function resetScore() { // permet de remettre le score a 0
 
-for (property of allQuiz.highscore){
-     // vidage du tableau des scores   
+    for (property of storageScore1.highscore) {
+        // vidage du tableau des scores   
         property.level[0].débutant = 0;
         property.level[0].confirmé = 0;
         property.level[0].expert = 0;
     }
-insertScoreInBoard();
+    sessionStorage.setItem("scoreAll", JSON.stringify(storageScore1));
+    displayScore();
 }

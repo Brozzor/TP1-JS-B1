@@ -1,3 +1,11 @@
+if (sessionStorage.scoreAll == undefined) { // verifie si il y a déjà d'enregistrer scoreAll sur une sessionStorage
+    let allQuiz_json = JSON.stringify(allQuiz);
+    sessionStorage.setItem("scoreAll", allQuiz_json);
+}
+let allQuiz_json2 = sessionStorage.getItem("scoreAll");
+let storageScore = JSON.parse(allQuiz_json2);
+let level = extractUrlParams().level;
+let id = extractUrlParams().id;
 let quizz = {
     // variable globale permettant la communication entre les functions des informations de base pour savoir ou nous en sommes dans le script , score
     nbQuestion: 0,
@@ -6,9 +14,9 @@ let quizz = {
     timer: 15,
     citation: "",
     authorCitation: ""
-  };
-  
-  function extractUrlParams() {
+};
+
+function extractUrlParams() {
     // permet d'extraire les parametres dans l'url, tel que (id, level)
     var t = location.search.substring(1).split("&");
     var f = [];
@@ -17,12 +25,11 @@ let quizz = {
         f[x[0]] = x[1];
     }
     return f;
-  }
-  
-  function init() {
+}
+
+function init() {
     // Cette fonction permet l'initialisation de depart et a chaque question de remettre au propre les reponse que l'utilisateur peut choisir
-    let id = extractUrlParams().id;
-    let level = extractUrlParams().level;
+
     let levelName = "débutant";
     quizz.timer = 15;
     if (level == 3) {
@@ -33,9 +40,9 @@ let quizz = {
     document.getElementById("choiceAnswer").innerHTML = null;
     setTimeout("colorModify('init')", 1000);
     question(id, levelName);
-  }
-  
-  function question(id, levelName) {
+}
+
+function question(id, levelName) {
     // cette fonctions permet de rechercher une question et de l'afficher , elle permet aussi de sauvegarder la réponse dans une variable global appeler quizz.tempAnswerid
     fetch(`http://127.0.0.1:8080/quizz/${id}.json`)
         .then(result => result.json())
@@ -52,6 +59,7 @@ let quizz = {
               class="custom-control-input"
               id="choice${i}"
               value="${i}"
+              name="game"
             />
             <label class="custom-control-label" for="choice${i}"
               >${property}</label
@@ -62,14 +70,14 @@ let quizz = {
                 }
                 i++;
             }
-  
+
         })
         .catch(err => {
             endGame();
         });
-  }
-  
-  function checkAnswer() {
+}
+
+function checkAnswer() {
     // cette fonction permet de verifier la réponse si elle est correct
     let i = 1;
     while (i <= 4) {
@@ -79,9 +87,9 @@ let quizz = {
         i++;
     }
     return false;
-  }
-  
-  function colorModify(color) {
+}
+
+function colorModify(color) {
     // change les couleurs lors d'une victoire , d'une defaite ou simplement une remise a 0
     let classNameColor = "btn btn-dark";
     if (color == "win") {
@@ -102,9 +110,9 @@ let quizz = {
     document.body.style.background = color;
     document.getElementById("nextButton").className = classNameColor;
     document.getElementById("timer").className = classNameColorBadge;
-  }
-  
-  function next() {
+}
+
+function next() {
     // cette fonction permet de changer de question
     if (checkAnswer()) {
         quizz.score++;
@@ -114,11 +122,11 @@ let quizz = {
     }
     quizz.tempAnswerid = 0;
     quizz.nbQuestion++;
-  
+
     init();
-  }
-  
-  function timerStart() {
+}
+
+function timerStart() {
     if (quizz.timer > 7950) {
         return;
     } // permet de supprimer le timer a la fin d'une partie
@@ -137,14 +145,14 @@ let quizz = {
     }
     quizz.timer--;
     setTimeout(`timerStart()`, 1000);
-  }
-  
-  function randomNb(max) {
+}
+
+function randomNb(max) {
     // genere un chiffre semi-aleatoire , cette fonction est utiliser pour trouver une citation
     return Math.floor(Math.random() * Math.floor(max));
-  }
-  
-  function generatorCitation() {
+}
+
+function generatorCitation() {
     // choisit une citation semi-aleatoire parmis la base de donnée en json
     fetch(`http://127.0.0.1:8080/citation.json`)
         .then(result => result.json())
@@ -153,19 +161,18 @@ let quizz = {
             quizz.citation = data.citation[nb].citation;
             quizz.authorCitation = data.citation[nb].author;
         });
-  }
-  
-  function endGame() {
+}
+
+function endGame() {
     // Pour eviter un bug un peu bete avec le timer j'ai du diviser la fonction endGame en 2
     quizz.timer = 8000; // permet de supprimer le timer a la fin d'une partie
     setTimeout(`endGame1()`, 1000);
-  }
-  
-  
-  function endGame1() {
+}
+
+
+function endGame1() {
     // création de la page de fin de partie
-    let level = extractUrlParams().level;
-    let id = extractUrlParams().id;
+
     document.getElementById("choiceAnswer").innerHTML = null;
     document.getElementById("question").innerHTML = null;
     document.getElementById("questionCompleted").innerHTML = null;
@@ -178,7 +185,7 @@ let quizz = {
         document.getElementById("levelUpButton").href = `http://127.0.0.1:8080/pages.html?id=${id}&level=${parseInt(level)+1}`;
     }
     colorModify(init);
-    if ((quizz.score == 10) && (level == 1 || level == 2)) {
+    if ((quizz.score == 10) && (level == 1 || level == 2)) { // affiche une petite phrase pour motiver
         document.getElementById("question").innerHTML = '<font color="#28a745"><center>Tu es quelqu\'un de très cultiver mais tu peux faire mieux en augmentant le niveau sur ce quizz ;)</center></font>';
     } else if ((quizz.score == 10) && (level == 3)) {
         document.getElementById("question").innerHTML = '<font color="#28a745"><center>C\'est pas mal tu as presque le savoir absolut </center></font>';
@@ -191,6 +198,18 @@ let quizz = {
     }
     // affichage des citations automatiques
     document.getElementById("choiceAnswer").innerHTML = `<i><center>\"${quizz.citation}\"</center></i><br><strong><center>par : ${quizz.authorCitation}</center></strong>`;
-  
-  
-  }
+    if (level == 1) {
+        checkScoreHigher("débutant", quizz.score)
+    } else if (level == 2) {
+        checkScoreHigher("confirmé", quizz.score)
+    } else if (level == 3) {
+        checkScoreHigher("expert", quizz.score)
+    }
+    sessionStorage.setItem("scoreAll", JSON.stringify(storageScore));
+}
+
+function checkScoreHigher(adj, score) { // verifie si le nouveau score est plus grand que l'ancien score
+    if (storageScore.highscore[--id].level[0][adj] < score) {
+        storageScore.highscore[id].level[0][adj] = score;
+    }
+}

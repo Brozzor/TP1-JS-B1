@@ -1,78 +1,69 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="" />
     <title>Bienvenue sur BestQuizzFrance</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet" />
-    
-  </head>
-  <body style="background: #111;">
+
+</head>
+
+<body style="background: #111;">
     <div class="container">
-      <center>
-        <h1 id="h1title" class="text-white">Bienvenue sur BestQuizzFrance</h1><br><br>
-        <h3 class="mb-4"><span id="h3title" class="badge badge-light">Choisissez le quiz qui vous correspond</span></h3>
-      </center>
-      
-      <div class="row">
-        <div class="col-sm-12">
-          <div id="board">
-          </div>
-<!-- Card deck -->
-<div id="mainQuiz" class="card-deck">
-</div>
-<!-- Card deck -->
-<div id="banniere" class="card mb-4">
+        <center>
+            <h1 id="h1title" class="text-white">Bienvenue sur BestQuizzFrance</h1><br><br>
+            <h3 class="mb-4"><span id="h3title" class="badge badge-light">Choisissez le quiz qui vous correspond</span></h3>
+        </center>
 
-  <div class="view overlay">
-    <img class="card-img-top" src="http://127.0.0.1:8080/img/4.jpg" alt="Card image cap">
-    <a href="http://127.0.0.1:8080/pages.html?id=4&level=1">
-      <div class="mask rgba-white-slight"></div>
-    </a>
-  </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="board">
+                </div>
+                <!-- Card deck -->
+                <div id="mainQuiz" class="card-deck">
+                </div>
+                <!-- Card deck -->
+                <div id="banniere" class="card mb-4">
 
-  <div class="card-body">
-    <h4 class="card-title">Déjeuner du matin</h4>
-    <p class="card-text">Pour bien démarrer la journée</p>
-    <a href="http://127.0.0.1:8080/pages.html?id=4&level=1"><button type="button" class="btn btn-dark btn-sm" style="padding: .6rem 1.3rem;
+                    <div class="view overlay">
+                        <img class="card-img-top" src="http://127.0.0.1:8080/img/4.jpg" alt="Card image cap">
+                        <a href="http://127.0.0.1:8080/pages.html?id=4&level=1">
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+
+                    <div class="card-body">
+                        <h4 class="card-title">Déjeuner du matin</h4>
+                        <p class="card-text">Pour bien démarrer la journée</p>
+                        <a href="http://127.0.0.1:8080/pages.html?id=4&level=1"><button type="button" class="btn btn-dark btn-sm" style="padding: .6rem 1.3rem;
         font-size: .64rem;">Débutant</button></a>
-    <a href="http://127.0.0.1:8080/pages.html?id=4&level=2"><button type="button" class="btn btn-dark btn-sm" style="padding: .6rem 1.3rem;
+                        <a href="http://127.0.0.1:8080/pages.html?id=4&level=2"><button type="button" class="btn btn-dark btn-sm" style="padding: .6rem 1.3rem;
         font-size: .64rem;">Confirmé</button></a>
-    <a href="http://127.0.0.1:8080/pages.html?id=4&level=3"><button type="button" class="btn btn-dark btn-sm" style="padding: .6rem 1.3rem;
+                        <a href="http://127.0.0.1:8080/pages.html?id=4&level=3"><button type="button" class="btn btn-dark btn-sm" style="padding: .6rem 1.3rem;
         font-size: .64rem;">Expert</button></a>
 
-  </div>
+                    </div>
 
-</div>
-<button id="displayBestScore" onclick="displayScore()" class="btn btn-light btn-block">Afficher vos meilleures scores</button>
+                </div>
+                <button id="displayBestScore" onclick="displayScore()" class="btn btn-light btn-block">Afficher vos meilleures scores</button>
 
+            </div>
         </div>
-      </div>
     </div>
     <script src="./js/high_score.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/index.js"></script>
     <script src="./js/ester-eggs.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"
-    ></script>
-  </body>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script>
+</body>
+
 </html>
